@@ -1,6 +1,6 @@
 #ifndef EVTOL_H
 #define EVTOL_H
-
+#include "vehicle.h"
 class Evtol : public Vehicle {
 public:
 	Evtol();
@@ -69,6 +69,10 @@ public:
 
 	int getNumFlight() {
 		return num_flight;
+	}
+
+	double getBatteryLeft() {
+		return battery_left;
 	}
 
 	VehicleType getVehicleType() {

@@ -19,12 +19,18 @@ int main()
 	VehicleFactory factory = VehicleFactory();
 	StatsTracker stats_tracker = StatsTracker();
 
+	// Simulation Loop
 	for (int i = 0; i < iterations; i++) {
+		// Factory builds random vehicles for this simulation iteration
 		vector<Vehicle*> vehicles = factory.buildRandomVehicles(num_vehicel);
+		// Create chargers for this simulation 
 		FIFSEvtolCharger* charger = new FIFSEvtolCharger(simulation_time_hour);
-		Simulator simulator = Simulator(simulation_time_hour, vehicles, charger);
+		// Add vehicles and charger object to simulator. Specify simulation time precision, e.g second.
+		Simulator simulator = Simulator(simulation_time_hour, vehicles, charger, SIMULATION_PRECISION);
+		// Start simulation
 		simulator.simulate();
 
+		// Collect simulation results
 		stats_tracker.collect(vehicles);
 	}
 	

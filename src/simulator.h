@@ -2,10 +2,14 @@
 #define SIMULATOR_H
 #include "vehicle/vehicle.h"
 #include "charger/charger.h"
-#include "Config.h"
+
+/*
+	Simulator object that runs the simulation with the given objects, and at the time precision
+	specified.
+*/
 class Simulator {
 public:
-	Simulator(double time, vector<Vehicle*> vehicles, Charger* charger);
+	Simulator(double time, vector<Vehicle*> vehicles, Charger* charger, int precision_mode);
 
 	void simulate();
 
@@ -15,7 +19,7 @@ private:
 	vector<Vehicle*> low_battery_vehicles;
 	int iter;
 	double simulation_time;
-	double unit_time = 1.0 / SIMULATION_PRECISION;
+	double unit_time;
 		
 
 };

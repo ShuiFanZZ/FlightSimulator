@@ -1,4 +1,3 @@
-#include "vehicle.h"
 #include "evtol.h"
 
 Evtol::Evtol() {

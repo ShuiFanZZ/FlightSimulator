@@ -1,6 +1,11 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
 
+/*
+	This file contains the Vehicle interface that needs to be implemented by
+	every vehicle class, and some useful constants.
+*/
+
 #include <iostream>
 #include <string>
 #include <map>
@@ -21,6 +26,9 @@ enum class VehicleStatus
 	DISABLED
 };
 
+/*
+	Base Class for all Vehicle objects
+*/
 class Vehicle {
 public:
 
@@ -84,6 +92,8 @@ public:
 		case VehicleStatus::DISABLED:
 			return "Disabled";
 		}
+
+		return "Disabled";
 	}
 
 protected:

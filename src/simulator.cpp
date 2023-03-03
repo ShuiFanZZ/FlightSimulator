@@ -1,10 +1,11 @@
 #include "simulator.h"
 
-Simulator::Simulator(double time, vector<Vehicle*> vehicles, Charger* charger) {
+Simulator::Simulator(double time, vector<Vehicle*> vehicles, Charger* charger, int precision_mode) {
 	this->vehicles = vehicles;
 	this->charger = charger;
 	this->simulation_time = time;
-	this->iter = rint(this->simulation_time * SIMULATION_PRECISION);
+	this->iter = (int)rint(this->simulation_time * precision_mode);
+	this->unit_time = 1.0 / precision_mode;
 }
 
 void Simulator::simulate() {
