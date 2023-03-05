@@ -30,6 +30,7 @@ struct StatsReport {
 	double total_distance = 0.0;
 	double total_charge_time = 0.0;
 	double total_flight_time = 0.0;
+	double total_queue_time = 0.0;
 	int count_flight = 0;
 	int count_charge = 0;
 	int count_fault = 0;
@@ -42,7 +43,7 @@ struct StatsReport {
 			"Average Distance Traveled per Flight: " +
 			to_string(total_distance / count_flight) + "\n" +
 			"Average Charge Time per Session: " +
-			to_string(total_charge_time / count_charge) + "\n" +
+			to_string((total_charge_time + total_queue_time) / count_charge) + "\n" +
 			"Total Faults: " + to_string(count_fault) + "\n" +
 			"Total Passenger Miles: " + to_string(total_distance * num_passenger) + "\n";
 	}

@@ -38,9 +38,11 @@ public:
 		fault_rate = value;
 	}
 
-	void startCharging() {
+	// Normally called by a charger. Start a charging session.
+	// Update: Consider joining queue as the start of a charging session.
+	void startChargingSession() {
 		num_charge++;
-		status = VehicleStatus::CHARGING;
+		status = VehicleStatus::IN_CHARGING_QUEUE;
 	}
 
 	double getMilage() {
@@ -75,18 +77,27 @@ public:
 		return battery_left;
 	}
 
+	double getTotalQueueTime() {
+		return time_queue_total;
+	}
+
 	VehicleType getVehicleType() {
 		return VehicleType::EVTOL;
 	}
 
 private:
 
-
+	// Cruise Speed (mph)
 	double cruise_speed;
+	// Battery Capacity (kWh)
 	double battery_capacity;
+	// Time to Charge (hours)
 	double time_to_charge;
+	// Energy use at Cruise (kWh/mile)
 	double energy_use_cruise;
+	// Passenger Count
 	int num_passenger;
+	// Probability of fault per hour
 	double fault_rate;
 
 	double milage = 0.0;
@@ -95,6 +106,7 @@ private:
 	double time_charged = 0.0;
 	double time_charged_total = 0.0;
 	double time_flight_total = 0.0;
+	double time_queue_total = 0.0;
 	int num_flight = 0;
 	int num_charge = 0;
 

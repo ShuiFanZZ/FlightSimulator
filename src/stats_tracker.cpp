@@ -17,6 +17,7 @@ void StatsTracker::collectEvtol(Evtol* evtol) {
 	stats.total_distance += evtol->getMilage();
 	stats.total_charge_time += evtol->getTotalChargeTime();
 	stats.total_flight_time += evtol->getTotalFightTime();
+	stats.total_queue_time += evtol->getTotalQueueTime();
 	stats.count_flight += evtol->getNumFlight();
 	stats.count_charge += evtol->getNumCharge();
 	stats.count_fault += evtol->getNumFault();

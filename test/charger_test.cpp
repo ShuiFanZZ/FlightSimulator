@@ -33,6 +33,7 @@ void Test_Charger_Single_Vehicle() {
 	FIFSEvtolCharger charger = FIFSEvtolCharger(1);
 	charger.serve(vehicles);
 	error += ASSERT_EQUAL_STATUS(VehicleStatus::CHARGING, evtol.getVehicleStatus());
+	error += ASSERT_EQUAL(1, evtol.getNumCharge(), "Number of Chargeing Session");
 	if (error == 0) {
 		num_pass++;
 	}
@@ -56,6 +57,9 @@ void Test_Charger_Capcity() {
 	charger.serve(vehicles);
 	error += ASSERT_EQUAL_STATUS(VehicleStatus::CHARGING, evtol1.getVehicleStatus());
 	error += ASSERT_EQUAL_STATUS(VehicleStatus::IN_CHARGING_QUEUE, evtol2.getVehicleStatus());
+	error += ASSERT_EQUAL(1, evtol1.getNumCharge(), "Number of Chargeing Session");
+	// Entering the queue is considered as the start of a charging session
+	error += ASSERT_EQUAL(1, evtol2.getNumCharge(), "Number of Chargeing Session");
 
 	if (error == 0) {
 		num_pass++;

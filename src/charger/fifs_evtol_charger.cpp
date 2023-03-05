@@ -12,7 +12,7 @@ void FIFSEvtolCharger::serve(vector<Vehicle*> vehicles_to_serve) {
 			Evtol* evtol = (Evtol*)v;
 			if (VehicleStatus::OUT_OF_BATTERY == evtol->getVehicleStatus()) {
 				queue.push(evtol);
-				evtol->setStatus(VehicleStatus::IN_CHARGING_QUEUE);
+				evtol->startChargingSession();
 			}
 		}
 	}
@@ -36,7 +36,7 @@ void FIFSEvtolCharger::serve(vector<Vehicle*> vehicles_to_serve) {
 		Evtol* evtol = queue.front();
 		queue.pop();
 		serving_set.insert(evtol);
-		evtol->startCharging();
+		evtol->setStatus(VehicleStatus::CHARGING);
 		occupancy++;
 	}
 

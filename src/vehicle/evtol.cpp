@@ -24,6 +24,9 @@ void Evtol::update(double dt) {
 		}
 
 	}
+	else if (VehicleStatus::IN_CHARGING_QUEUE == status) {
+		time_queue_total += dt;
+	}
 	// Update battery and charge time if Charging
 	else if (VehicleStatus::CHARGING == status) {
 		time_charged_total += dt;
